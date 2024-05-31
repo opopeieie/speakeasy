@@ -3,7 +3,6 @@
 var base32 = require('base32.js');
 var crypto = require('crypto');
 var url = require('url');
-var util = require('util');
 
 /**
  * Digest the one-time passcode options.
@@ -545,11 +544,6 @@ exports.generateSecret = function generateSecret (options) {
   return SecretKey;
 };
 
-// Backwards compatibility - generate_key is deprecated
-exports.generate_key = util.deprecate(function (options) {
-  return exports.generateSecret(options);
-}, 'Speakeasy - Deprecation Notice - `generate_key()` is depreciated, please use `generateSecret()` instead.');
-
 /**
  * Generates a key of a certain length (default 32) from A-Z, a-z, 0-9, and
  * symbols (if requested).
@@ -571,11 +565,6 @@ exports.generateSecretASCII = function generateSecretASCII (length, symbols) {
   }
   return output;
 };
-
-// Backwards compatibility - generate_key_ascii is deprecated
-exports.generate_key_ascii = util.deprecate(function (length, symbols) {
-  return exports.generateSecretASCII(length, symbols);
-}, 'Speakeasy - Deprecation Notice - `generate_key_ascii()` is depreciated, please use `generateSecretASCII()` instead.');
 
 /**
  * Generate a Google Authenticator-compatible otpauth:// URL for passing the
